@@ -1,13 +1,14 @@
 package com.cbankoue.booklist.service;
 
 import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.cbankoue.booklist.Exception.BookNotFoundException;
 import com.cbankoue.booklist.entity.Book;
 import com.cbankoue.booklist.repository.BookRepository;
 
@@ -34,13 +35,32 @@ public class BookService {
 	}
 
 	
-	public Optional<Book> findById(Long id) {
-		return bookRepository.findById(id);
+	public Book findById(Long id) throws BookNotFoundException {
+		Book book = bookRepository.findById(id).orElse(null); 
+		
+		if (book == null) {
+			throw new BookNotFoundException(String.format("Book not found with id %d", id));
+		}
+		
+		return book;
 	}
 
-	
 	public Book saveOrUpdate(Book book) {
-		return bookRepository.save(book);
+		return bookRepository.saveAndFlush(book);
+	}
+
+
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		bookRepository.deleteById(id);
+	}
+
+
+	public Collection<Book> saveAll(List<Book> books) {
+		// TODO Auto-generated method stub
+		bookRepository.saveAllAndFlush(books);
+		
+		return books;
 	}
 
 	

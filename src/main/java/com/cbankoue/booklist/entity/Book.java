@@ -6,12 +6,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="table_book")
+@NoArgsConstructor
 public class Book {
+	
+
+
+	public Book(String title, String author, String coverPhotoURL, Long isbnNumber, Double price, String language,
+			String genre) {
+		this.title = title;
+		this.author = author;
+		this.coverPhotoURL = coverPhotoURL;
+		this.isbnNumber = isbnNumber;
+		this.price = price;
+		this.language = language;
+		this.genre = genre;
+	}
 
 	@Id
 	@GeneratedValue

@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import lombok.Data;
 
 @Data
@@ -33,4 +35,8 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private Role role;
+	
+	public void setPassword(String password) {
+		this.password = new BCryptPasswordEncoder().encode(password);
+	}
 }

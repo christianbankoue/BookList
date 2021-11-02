@@ -28,16 +28,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests()
-			.antMatchers(API_BOOK_LIST + "/").authenticated()
-			.antMatchers(API_BOOK_LIST + "/add-book", API_BOOK_LIST + "/edit-book").hasAnyAuthority("ADMIN")
-			.antMatchers(API_BOOK_LIST + "/book/**").hasAnyRole("USER")
+		http.csrf().disable().authorizeRequests()
+			.antMatchers("books/**").permitAll()
+//			.antMatchers(API_BOOK_LIST + "/").authenticated()
+//			.antMatchers(API_BOOK_LIST + "/add-book", API_BOOK_LIST + "/edit-book").hasAnyAuthority("ADMIN")
+//			.antMatchers(API_BOOK_LIST + "/book/**").hasAnyRole("USER")
 			.and()
 			.formLogin()
 			.loginPage("/login")
 			.and()
 			.logout()
 			.logoutUrl("/logout").logoutSuccessUrl("/login");
+			;
 		
 	}
 	
