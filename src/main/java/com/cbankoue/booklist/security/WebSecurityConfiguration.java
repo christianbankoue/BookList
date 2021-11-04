@@ -17,7 +17,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private UserDetailService userDetailservice;
 	
-	private final String API_BOOK_LIST = "api_book_list";
+//	private final String API_BOOK_LIST = "api_book_list";
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
