@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -28,17 +29,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.csrf().disable().authorizeRequests()
-			.antMatchers("books/**").permitAll()
-//			.antMatchers(API_BOOK_LIST + "/").authenticated()
-//			.antMatchers(API_BOOK_LIST + "/add-book", API_BOOK_LIST + "/edit-book").hasAnyAuthority("ADMIN")
-//			.antMatchers(API_BOOK_LIST + "/book/**").hasAnyRole("USER")
+		http
+			.authorizeRequests()
+			.antMatchers("register", "/").permitAll()
+			.antMatchers("/books").authenticated()
+			.antMatchers("books/**").hasAnyRole("USER", "ADMIN")
+			.antMatchers("user/").hasAnyRole("ADMIN")
 			.and()
 			.formLogin()
 			.loginPage("/login")
+			.permitAll()
 			.and()
 			.logout()
-			.logoutUrl("/logout").logoutSuccessUrl("/login");
+			.permitAll()
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
 			;
 		
 	}

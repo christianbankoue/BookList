@@ -1,6 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "./component/Footer";
 import NavigationBar from "./component/NavigationBar";
+import "./App.css";
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
       <NavigationBar />
       <Container>
         <Row>
-          <Col>1 of 1</Col>
+          <Col lg={12} className={"margin-top"}>
+            
+          </Col>
         </Row>
       </Container>
       <Footer/>

@@ -1,5 +1,3 @@
-import { faBook } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 const NavigationBar = () => {

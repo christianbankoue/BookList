@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,10 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Book {
 	
-
-
-	public Book(String title, String author, String coverPhotoURL, Long isbnNumber, Double price, String language,
-			String genre) {
+	public Book(String title, String author, String coverPhotoURL, Long isbnNumber, Double price, String language, String genre) {
 		this.title = title;
 		this.author = author;
 		this.coverPhotoURL = coverPhotoURL;
@@ -42,7 +38,7 @@ public class Book {
 	@Column(nullable = false)
 	private String coverPhotoURL;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private Long isbnNumber;
 
 	@Column(nullable = false)

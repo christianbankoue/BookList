@@ -1,6 +1,7 @@
 package com.cbankoue.booklist.controller;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,13 +53,13 @@ public class BookController {
 		return entity;
 	}
 	
-//	@PostMapping("saveAll")
-//	ResponseEntity<Collection<Book>> saveAll(@RequestBody List<Book> books){
-//		
-//		ResponseEntity<Collection<Book>> entity =  new ResponseEntity<Collection<Book>>(bookService.saveAll(books), HttpStatus.CREATED);
-//		
-//		return entity;
-//	}
+	@PostMapping("saveAll")
+	ResponseEntity<Collection<Book>> saveAll(@RequestBody List<Book> books){
+		
+		ResponseEntity<Collection<Book>> entity =  new ResponseEntity<Collection<Book>>(bookService.saveAll(books), HttpStatus.CREATED);
+		
+		return entity;
+	}
 	
 	@PostMapping
 	ResponseEntity<Book> save(@RequestBody Book book){
