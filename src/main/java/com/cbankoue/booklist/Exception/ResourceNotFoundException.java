@@ -1,6 +1,6 @@
 package com.cbankoue.booklist.Exception;
 
-public class BookNotFoundException extends Exception {
+public class ResourceNotFoundException extends RuntimeException {
 
 	/**
 	 * 
@@ -8,7 +8,7 @@ public class BookNotFoundException extends Exception {
 	private static final long serialVersionUID = -4671520070694902589L;
 
 	
-	public BookNotFoundException(String message) {
+	public ResourceNotFoundException(String message) {
 		super(message);
 	}
 

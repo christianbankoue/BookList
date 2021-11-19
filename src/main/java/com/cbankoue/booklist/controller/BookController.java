@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cbankoue.booklist.Exception.BookNotFoundException;
+import com.cbankoue.booklist.Exception.ResourceNotFoundException;
 import com.cbankoue.booklist.entity.Book;
 import com.cbankoue.booklist.service.BookService;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/books")
 public class BookController {
 	
 	@Autowired
@@ -46,7 +46,7 @@ public class BookController {
 			
 			entity =  new ResponseEntity<Book>(bookService.findById(id), HttpStatus.OK);
 		
-		} catch (BookNotFoundException e) {
+		} catch (ResourceNotFoundException e) {
 			logger.error("error " + e);
 		}
 		

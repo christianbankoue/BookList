@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.cbankoue.booklist.Exception.BookNotFoundException;
+import com.cbankoue.booklist.Exception.ResourceNotFoundException;
 import com.cbankoue.booklist.entity.Book;
 import com.cbankoue.booklist.repository.BookRepository;
 
@@ -35,13 +35,9 @@ public class BookService {
 	}
 
 	
-	public Book findById(Long id) throws BookNotFoundException {
-		Book book = bookRepository.findById(id).orElse(null); 
-		
-		if (book == null) {
-			throw new BookNotFoundException(String.format("Book not found with id %d", id));
-		}
-		
+	public Book findById(Long id) throws ResourceNotFoundException {
+		Book book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No Book found with id " + id));
+				
 		return book;
 	}
 

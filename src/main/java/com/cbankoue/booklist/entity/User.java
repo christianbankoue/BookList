@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -29,9 +31,11 @@ public class User {
 	@Column(nullable = false)
 	private String mobile;
 	
+	@JsonIgnore
 	@Column(nullable = false)
 	private String password;
 	
+//	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private Role role;
